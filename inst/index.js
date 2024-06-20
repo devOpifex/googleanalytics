@@ -1,4 +1,6 @@
 $(document).on("shiny:inputchanged", (event) => {
+  if (event.name.match(/^.clientdata/)) return;
+
   gtag("event", event.name, {
     type: event.inputType,
     value: event.value,
@@ -35,7 +37,6 @@ $(document).on("shiny:idle", () => {
 
 $(() => {
   const navbar = $(document).find(".navbar");
-
   if (!navbar.length) return;
 
   $(navbar)
