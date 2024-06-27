@@ -27,6 +27,18 @@ $(document).on("shiny:error", (event) => {
   });
 });
 
+$(document).on("shiny:visualchange", (event) => {
+  const id = $(event.binding.el).attr("id");
+
+  if(!id) return;
+
+  gtag("event", "visualchange", {
+    id: id,
+    visible: event.visible,
+    category: "visualchange",
+  });
+});
+
 $(document).on("shiny:busy", () => {
   gtag("event", "busy", {});
 });
